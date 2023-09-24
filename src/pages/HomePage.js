@@ -1,25 +1,33 @@
 
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import ItemCard from '../components/ItemCard';
 
 const HomePage = () => {
     const [items, setItems] = useState([])
 
-    const getData = async () => {
-        const data = await fetch("https://fakestoreapi.com/products")
+        const getData = async () => {
+        const data = await fetch("http://localhost:4000/getProdcts", {
+         method: 'POST',
+         headers: {
+            "Content-Type": "application/json",
+          },  })
         const res = await data.json()
-
         setItems(res)
-
+    }
+        const getKey = async () => {
+        const data = await fetch("http://localhost:4000/getKey", {
+         method: 'POST',
+         headers: {
+            "Content-Type": "application/json",
+          },  })
+        const res = await data.json()
+      console.log(res.key)
     }
 
     useEffect(() => {
         getData()
+        getKey()
     }, [])
-
-
-
 
 
     return (

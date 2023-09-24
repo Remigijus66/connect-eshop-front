@@ -1,11 +1,7 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
+import React from 'react';
+
 
 const CartCard = ({ item, cart, setCart, cartValue, setCartValue }) => {
-
-
-
-
 
   const deletefromCart = () => {
     let cartCopy = [...cart]
@@ -13,7 +9,6 @@ const CartCard = ({ item, cart, setCart, cartValue, setCartValue }) => {
     setCart(cartCopy)
     const val = cartValue - item.price;
     setCartValue(Number(val.toFixed(2)));
-    // goToCart()
   }
 
   return (
@@ -30,7 +25,3 @@ const CartCard = ({ item, cart, setCart, cartValue, setCartValue }) => {
 
 export default CartCard;
 
-// neveikia tikrinimas ar preke jau krepselyje 
-// krepselio verte persiskaiciuoja tik is naujo uzkrovus
-// sutvarkyti virsutini meniu 
-// pagrazinti 

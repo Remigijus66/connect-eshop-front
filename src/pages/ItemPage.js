@@ -8,14 +8,21 @@ const ItemPage = ({ cart, setCart }) => {
   const [item, setItem] = useState([])
 
   const getSingleItem = async () => {
-    const data = await fetch("https://fakestoreapi.com/products/" + id)
+    const bodyData = {
+        id: id
+    }
+    console.log(bodyData)
+    const data = await fetch("http://localhost:4000/getSingleProdct", {
+     method: 'POST' ,
+     headers: {
+      "Content-Type": "application/json",
+    },
+       body: JSON.stringify(bodyData),  
+    })
 
     const res = await data.json()
-
-    // console.log("res", res)
     setItem(res)
-
-  }
+}
 
   useEffect(() => {
     getSingleItem()
@@ -24,11 +31,7 @@ const ItemPage = ({ cart, setCart }) => {
 
   return (
     <div >
-
-
       <SingleItem item={item} cart={cart} setCart={setCart} />
-
-
     </div>
 
   );
